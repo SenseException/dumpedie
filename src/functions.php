@@ -33,3 +33,22 @@ if (!function_exists('dd_cond')) {
         return new Condition($condition);
     }
 }
+
+if (!function_exists('dd_trace')) {
+    /**
+     * @return string
+     */
+    function dd_trace()
+    {
+        $e = new Exception('');
+        $trace = $e->getTrace();
+        array_shift($trace);
+
+        $output = '';
+        foreach ($trace as $step) {
+            $output .= sprintf('%s[%d] -> %s()%s', $step['file'], $step['line'], $step['function'], PHP_EOL);
+        }
+
+        return $output;
+    }
+}
