@@ -3,22 +3,23 @@
 namespace Budgegeria\Dumpedie\Tests;
 
 use Budgegeria\Dumpedie\Condition;
+use PHPUnit\Framework\TestCase;
 
-class ConditionTest extends \PHPUnit_Framework_TestCase
+class ConditionTest extends TestCase
 {
     public function testCondition()
     {
         $condition = new Condition(true);
-        $this->assertTrue($condition->isVisible());
+        self::assertTrue($condition->isVisible());
 
         $condition = new Condition(false);
-        $this->assertFalse($condition->isVisible());
+        self::assertFalse($condition->isVisible());
     }
 
     public function testConditionFunction()
     {
-        $this->assertTrue(dd_cond(true)->isVisible());
+        self::assertTrue(dd_cond(true)->isVisible());
 
-        $this->assertFalse(dd_cond(false)->isVisible());
+        self::assertFalse(dd_cond(false)->isVisible());
     }
 }

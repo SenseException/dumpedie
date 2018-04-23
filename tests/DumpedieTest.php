@@ -2,11 +2,11 @@
 
 namespace Budgegeria\Dumpedie\Tests;
 
-use PHPUnit_Framework_Assert;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\VarDumper\VarDumper;
 
-class DumpedieTest extends PHPUnit_Framework_TestCase
+class DumpedieTest extends TestCase
 {
     public function testDumpedie()
     {
@@ -26,6 +26,11 @@ class DumpedieTest extends PHPUnit_Framework_TestCase
         dumpedie(1, 'foo', dd_cond(true), true, 1.2);
     }
 
+    public function testDumpedieWithTrace()
+    {
+        self::assertStringStartsWith(sprintf('%s[%d] -> %s()%s', __FILE__, 31, 'dd_trace', PHP_EOL), dd_trace());
+    }
+
     /**
      * @param array $arguments
      */
@@ -33,7 +38,7 @@ class DumpedieTest extends PHPUnit_Framework_TestCase
     {
         VarDumper::setHandler(function ($argument) use (&$arguments) {
             $expected = array_shift($arguments);
-            PHPUnit_Framework_Assert::assertSame($expected, $argument);
+            Assert::assertSame($expected, $argument);
         });
     }
 }

@@ -40,9 +40,7 @@ if (!function_exists('dd_trace')) {
      */
     function dd_trace()
     {
-        $e = new Exception('');
-        $trace = $e->getTrace();
-        array_shift($trace);
+        $trace = debug_backtrace();
 
         $output = '';
         foreach ($trace as $step) {
