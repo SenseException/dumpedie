@@ -12,9 +12,9 @@ class Condition
     /**
      * @param bool $condition
      */
-    public function __construct($condition)
+    public function __construct(bool $condition)
     {
-        $this->condition = (bool) $condition;
+        $this->condition = $condition;
     }
 
     /**

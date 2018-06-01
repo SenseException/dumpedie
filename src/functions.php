@@ -28,7 +28,7 @@ if (!function_exists('dd_cond')) {
      * @param bool $condition
      * @return Condition
      */
-    function dd_cond($condition)
+    function dd_cond(bool $condition)
     {
         return new Condition($condition);
     }
